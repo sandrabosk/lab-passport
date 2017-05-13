@@ -8,10 +8,19 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 const session      = require('express-session');
 const passport     = require('passport');
+const flash        = require('connect-flash');
+
+//Load our ENVIRONMENT VARIABLES from the .env file in development
+//this is for dev only, but in production it just doesn't do anything
+require('dotenv').config();
+
+//tell node to run the code contained in this file
+//(this sets up passport and our strategies)
+require('./config/passport-config.js');
 
 
-mongoose.connect('mongodb://localhost/passport-app'); //he's doing this by himself
-
+// mongoose.connect('mongodb://localhost/passport-app'); this is hardcoded that's why needs to be replaced
+mongoose.connect(process.env.MONGODB_URI);
 const app = express();
 
 // view engine setup
@@ -33,40 +42,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
 //we add this line of code after installing express-session
 app.use(session({
-  secret:'my cool passpot app',
+  secret:'my cool passport app',
   //these 2 options are there to prevent warnings
   resave: true,
   saveUninitialized: true
  }) );
 
+ app.use(flash()); //this middleware has to come after session()
+
  //these come after the session middleware and before routes
+    // |   these two lines of the middleware allow session to comunicate with the passport,
+    // |   without them we have session but id doesn't interact with the passport things
 app.use(passport.initialize());
 app.use(passport.session());
 
-//determines WHAT TO PUT in the session (what to put in the box)
-  //called when you log in
-passport.serializeUser((user, cb)=>{
-  //cb==> callback
-  cb ( null, user._id );
+// !!!!! THIS IS VERY IMPORTANT --> THIS STATEMENT, THIS MIDDLEWARE ALLOWS USING 'USER' THROUGHOUT ALL OTHER DOCUMENTS AND ROUTES
+//this middleware sets the user variable for all views
+//only if logged in
+//    user:req.user --> for all renders!
+
+
+app.use ((req, res, next)=>{
+  if(req.user){
+    res.locals.user = req.user; // !!!!!!
+  }
+  next();
 });
 
-const User         = require('./models/user-model.js');
-
-//where to get the rest of the user's information (given what's in the box)
-  //called on every request AFTER you log in
-passport.deserializeUser((userId, cb) => {
-  //query the database with the ID from the box
-  User.findById(userId, (err, theUser) => {
-    if (err){
-      cb(err);
-      return;
-    }
-
-    //sending the user's information to passport
-    cb(null, theUser);
-  });
-});
-
+//PASSPORT GOES THROUGH THIS:
+    //1.our form
+    //2. LocalStrategy callback
+    //3. (if successful) passport.serializeUser()
 
 //routes go here:
 //---------------------------------
@@ -76,6 +82,12 @@ app.use('/', index);
 
 const myAuthRoutes = require('./routes/auth-routes.js');
 app.use ('/', myAuthRoutes);
+
+const myUserRoutes = require('./routes/user-routes.js');
+app.use ('/', myUserRoutes);
+
+const myRoomRoutes = require('./routes/room-routes.js');
+app.use('/', myRoomRoutes);
 
 // ---------------------------------
 // catch 404 and forward to error handler
