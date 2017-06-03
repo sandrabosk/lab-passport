@@ -1,0 +1,43 @@
+{
+  "name": "bootstrap-confirm-delete",
+  "version": "2.1.2",
+  "homepage": "https://github.com/rawphp/Bootstrap-Confirm-Delete",
+  "authors": [
+    "Tom Kaczocha <tom@crazydev.org>"
+  ],
+  "description": "Bootstrap confirm delete modal dialog jquery plugin",
+  "main": "bootstrap-confirm-delete.js",
+  "keywords": [
+    "bootstrap",
+    "confirm",
+    "delete",
+    "modal",
+    "extension",
+    "plugin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.9.1",
+    "bootstrap": ">= 3.3.5"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "_release": "2.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.2",
+    "commit": "958e5b4904a8a48de0c6c8f02af717f2c65f53e5"
+  },
+  "_source": "https://github.com/rawphp/Bootstrap-Confirm-Delete.git",
+  "_target": "^2.1.2",
+  "_originalSource": "bootstrap-confirm-delete",
+  "_direct": true
+}

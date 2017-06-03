@@ -1,0 +1,14 @@
+<% if(typeof trips !== 'undefined') { %>
+  <h2>Results</h2>
+  <ul>
+    <% trips.forEach((oneTrip) => { %>
+      <li>
+        <h3>Country:<%= oneTrip.country %></h3>
+        <p>City:<%= oneTrip.cityVisited %></p>
+        <a href="/trips/<%= oneTrip._id %>">
+          View Details
+        </a>
+      </li>
+    <%}) %>
+  </ul>
+<% } %>

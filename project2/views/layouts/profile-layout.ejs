@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>iTraveller</title>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,300|Raleway:300,400,900,700italic,700,300,600">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/myStyle.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/css/style.css">
+
+
+    <div class="loader"></div>
+    <div>
+    <!--HEADER-->
+    <div >
+      <div >
+        <header id="main-header">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container" style="background-color: #4d6791">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">i<span class="logo-dec">traveller</span></a>
+            </div>
+            <div class="collapse navbar-collapse nav-menu-container" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right nav-menu">
+                <li ><a href="/">Home</a></li>
+
+
+                <% if (typeof user !== "undefined"){ %>
+                  <li><a href="trips"> My Trips </a></li>
+                  <li><a href="/logout"> Log Out </a></li>
+                  <% } else { %>
+                    <li data-toggle="modal" data-target="#signupModal"><a href="#"> Sign Up</a> </li>
+                    <li data-toggle="modal" data-target="#loginModal"><a href="#"> Log In </a></li>
+                  <% } %>
+                <li class=""><a href="#feature">About</a></li>
+                <li class=""><a href="#contact">Contact Us</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        </header>
+
+      </div>
+    </div>
+    </div>
+  </head>
+  <body>
+
+  <%- body %>
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.easing.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/wow.js"></script>
+  <script src="/js/jquery.bxslider.min.js"></script>
+  <script src="/js/custom.js"></script>
+  </body>
+</html>

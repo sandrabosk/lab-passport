@@ -1,0 +1,31 @@
+<br><br>
+<br><br>
+
+<h2>Edit trip</h2>
+
+<form action="/trips/<%=trip._id%>" method="post">
+  <label for="trip-country-input"> Country </label>
+  <input  id="trip-country-input" type="text" name="tripCountry" value="<%= trip.country %>">
+    <br>
+  <label for="trip-city-input"> City </label>
+  <input  id="trip-city-input" type="text" name="tripCity" value="<%= trip.cityVisited %>">
+    <br>
+  <label for="trip-year-input"> Year </label>
+  <input  id="trip-year-input" type="number" name="tripYear" value="<%= trip.yearVisited %>">
+    <br>
+  <label for="trip-days-input"> For how long:  </label>
+  <input  id="trip-days-input" type="number" name="tripDays" value="<%= trip.daysStayed %>">
+    <br>
+  <label for="trip-something-input"> This trip I'll remember because... </label>
+  <textarea id="trip-something-input" name="tripSomething"> <%= trip.tripSomething %> </textarea>
+    <br>
+  <label for="trip-desc-input"> Description </label>
+  <textarea id="trip-desc-input" name="tripDescription"> <%= trip.description %> </textarea>
+    <br>
+  <label for="trip-thingsSeen-input"> Tourist attractions seen </label>
+  <textarea id="trip-thingsSeen-input" name="thingsSeen"> <%= trip.tourAttractions %> </textarea>
+    <br>
+
+
+  <button type="submit"> Save Changes </button>
+</form>

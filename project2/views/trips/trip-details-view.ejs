@@ -1,0 +1,20 @@
+
+          <h3><%= trip.country %> , <%= trip.cityVisited %></h3>
+          <h5> Year: <%= trip.yearVisited %></h5>
+
+          <h5> I stayed: <%= trip.daysStayed %> </h5>
+          <h5> This trip I'll remember because... <%= trip.tripSomething %></h5>
+
+          <h5> Description <%= trip.tripDescription %></h5>
+
+          <% if (trip.thingsSeen){ %>
+          <h5> Tourist attractions seen <%= trip.thingsSeen %></h5>
+          <% } %>
+
+      
+          <p>My trip photos</p>
+          <%trip.photoAddress.forEach((photoAddress)=>{%>
+
+            <img class="pic" src="<%= photoAddress %>">
+
+          <%});%>

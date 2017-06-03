@@ -1,0 +1,233 @@
+<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css"
+integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
+
+<section>
+
+<div class="container" style="margin-top: 80px;">
+<div class="profile-head">
+<div class="col-md- col-sm-4 col-xs-12">
+<img src="<%= user.photo %>" class="img-responsive" />
+
+</div><!--col-md-4 col-sm-4 col-xs-12 close-->
+
+
+<div class="col-md-5 col-sm-5 col-xs-12">
+<h5><%= user.name %></h5>
+<ul>
+<li><span class="glyphicon glyphicon-briefcase"></span><%= user.profession %> </li>
+<li><span class="glyphicon glyphicon-map-marker"></span><%= user.location %></li>
+<li><span class="glyphicon glyphicon-envelope"></span><a href="#" title="mail"><%= user.email %></a></li>
+<% if (user.favPlace !== ''){ %>
+  <li><span class="glyphicon glyphicon-heart"></span><%= user.favPlace %></li>
+<% }%>
+
+</ul>
+
+
+</div><!--col-md-8 col-sm-8 col-xs-12 close-->
+
+
+
+
+</div><!--profile-head close-->
+</div><!--container close-->
+
+
+<div id="sticky" class="container">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-menu tabs" role="tablist">
+      <li class="active">
+          <a href="#profile" role="tab" data-toggle="tab">
+              <i class="fa fa-male"></i> Profile
+          </a>
+      </li>
+      <li><a href="#change" role="tab" data-toggle="tab">
+          <i class="fa fa-key"></i> Edit Profile
+          </a>
+      </li>
+    </ul><!--nav-tabs close-->
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+    <div class="tab-pane fade active in" id="profile">
+    <div class="container">
+<div class="col-sm-11" style="float:left;">
+<div class="hve-pro">
+
+<p><%= user.about %></p>
+
+</div><!--hve-pro close-->
+</div><!--col-sm-12 close-->
+<br clear="all" />
+<div class="row">
+<div class="col-md-12">
+<h4 class="pro-title">BioGraph</h4>
+</div><!--col-md-12 close-->
+
+
+<div class="col-md-6">
+
+<div class="table-responsive responsiv-table">
+  <table class="table bio-table">
+      <tbody>
+     <tr>
+        <td>Name:</td>
+        <td><%= user.name %></td>
+     </tr>
+
+     <tr>
+        <td>Birthday:</td>
+        <td><%= user.birthday %></td>
+    </tr>
+    <tr>
+        <td>Contury:</td>
+        <td><%= user.location %></td>
+    </tr>
+    <tr>
+        <td>Occupation:</td>
+        <td><%= user.profession %></td>
+     </tr>
+
+    </tbody>
+  </table>
+  </div><!--table-responsive close-->
+</div><!--col-md-6 close-->
+
+<div class="col-md-6">
+
+<div class="table-responsive responsiv-table">
+  <table class="table bio-table">
+      <tbody>
+     <tr>
+        <td>Email:</td>
+        <td><%= user.email %></td>
+     </tr>
+     <tr>
+        <td>Favorite place on Earth:</td>
+        <td><%= user.favPlace %></td>
+     </tr>
+    <tr>
+        <td>Social:</td>
+        <td><%= user.social %></td>
+     </tr>
+
+    </tbody>
+  </table>
+  </div><!--table-responsive close-->
+</div><!--col-md-6 close-->
+
+</div><!--row close-->
+
+
+
+
+</div><!--container close-->
+</div><!--tab-pane close-->
+
+
+<div class="tab-pane fade" id="change">
+<div class="container fom-main">
+<div class="row">
+<div class="col-sm-12">
+<h2 class="register">Edit Your Profile</h2>
+</div><!--col-sm-12 close-->
+
+</div><!--row close-->
+<br />
+<div class="row">
+
+<form class="form-horizontal main_form text-left" action="/profile" method="post"  id="edit_form" enctype="multipart/form-data">
+<fieldset>
+
+<input type="text" name="pic" value="" id ="pic">
+
+  <label for="name-input"> Your Name </label>
+  <input  id="name-input" type="text"
+      name="profileName" value="<%= user.name %>">
+  <br>
+
+  <label for="username-input"> Account Name </label>
+  <input  id="username-input" type="text"
+      name="profileUsername" value="<%= user.username %>">
+  <br>
+
+<!-- ovo su dpdatna polja -->
+
+<label for="birthday-input"> Birth Year </label>
+<input  id="birthday-input" type="text"
+    name="userBirthday" value="<%= user.birthday %>">
+<br>
+<label for="userCountry"> Country </label>
+<input  id="userCountry" type="text"
+    name="userCountry" value="<%= user.location %>">
+<br>
+<label for="userProfession"> Occupation</label>
+<input  id="userProfession" type="text"
+    name="userProfession" value="<%= user.profession %>">
+<br>
+<label for="userEmail"> Email</label>
+<input  id="userEmail" type="text"
+    name="userEmail" value="<%= user.email %>">
+<br>
+<label for="userFavPlace"> Favorite place</label>
+<input  id="userFavPlace" type="text"
+    name="userFavPlace" value="<%= user.favPlace %>">
+<br>
+
+<label for="userAbout">About me</label>
+<textarea id="userAbout" name="userAbout"> <%= user.about %> </textarea>
+
+
+
+<!-- ovdje zavrsavaju dodatna polja -->
+
+
+
+  <label for="current-password-input"> Current Password </label>
+  <input  id="current-password-input" type="password"
+      name="profileCurrentPassword">
+  <br>
+
+  <label for="new-password-input"> New Password </label>
+  <input  id="new-password-input" type="password"
+      name="profileNewPassword">
+  <br>
+
+
+
+
+
+<!-- upload profile picture -->
+
+<div class="form-group">
+        <label for="user-photo-input">Upload photo</label>
+        <input id="user-photo-input" type="file" name="userPhoto" class="form-control">
+      </div>
+<!-- <div class="col-md-12 text-left"> -->
+<!-- <div class="uplod-picture"> -->
+<!-- <span class="btn btn-default uplod-file"> -->
+    <!-- Upload Photo <input type="file" /> -->
+<!-- </span> -->
+<!-- <span class="btn btn-default uplod-file"> -->
+    <!-- Upload Video <input type="file" /> -->
+<!-- </span> -->
+<!-- </div><!--uplod-picture close--> -->
+<!-- </div><!--col-md-12 close--> -->
+<!-- Button -->
+<div class="form-group col-md-10">
+  <div class="col-md-6">
+    <button type="button" id="submitbut" class="btn btn-warning submit-button">Save</button>
+    <button type="button" class="btn btn-warning submit-button">Cancel</button>
+
+  </div>
+</div>
+</fieldset>
+</form>
+</div><!--row close-->
+</div><!--container close -->
+</div><!--tab-pane close-->
+</div><!--tab-content close-->
+</div><!--container close-->
+
+</section><!--section close-->

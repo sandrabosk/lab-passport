@@ -1,0 +1,51 @@
+<script src="/js/custom.js"></script>
+
+
+<div class="pos">
+<% if(trips.length === 0){ %>
+  <h2> You don't have trips yet</h2>
+  <a href="/trips/new">
+    Create a trip
+  </a>
+<% }  else { %>
+  <a href="/trips/new">
+    Create a trip
+  </a>
+  <h2 class="trips-header"> Your Trips </h2>
+
+  <% if(successMessage.length > 0){ %>
+    <div class="success"> <%= successMessage %> </div>
+  <% } %>
+
+    <ul>
+      <% trips.forEach((oneTrip)=>{ %>
+        <li>
+          <div class="row">
+            <div class="col-sm-3">
+              <a href="#"><img class="pic" src="<%= oneTrip.photoAddress %>"></a>
+              <br><br>
+            </div>
+
+            <div class="col-sm-9">
+              <h3><%= oneTrip.country %> , <%= oneTrip.cityVisited %></h3>
+              <h5> <%= oneTrip.yearVisited %></h5>
+              <br>
+              <a href="/trips/<%= oneTrip._id %>">See details</a>
+              <a href="/trips/<%= oneTrip._id %>/edit ">Edit</a>
+              <form action="/trips/<%= oneTrip._id %>/delete" method="post">
+                <button >Delete</button>
+                <!-- <a id="dataConfirmOK" data-confirm="Are you sure you want to delete?">Delete</a> -->
+              </form>
+            </div>
+          </div>
+
+
+        </li>
+      <% }) %>
+    </ul>
+<% }%>
+
+<% if(trips.length !== 0){ %>
+<a href="/trips/new"> Create a Trip </a>
+<% } %>
+</div>
